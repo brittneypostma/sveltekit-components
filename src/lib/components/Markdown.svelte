@@ -1,0 +1,52 @@
+<script>
+	import marked from 'marked'
+	let text = ''
+	let markdownText = text
+	$: {
+		markdownText = marked(text)
+	}
+</script>
+
+<section class="wrapper">
+	<label>
+		Markdown Editor
+		<textarea id="" bind:value={text} />
+	</label>
+	<section class="article-wrapper">
+		<h5>Markdown Display</h5>
+		<div class="article">
+			<article>{@html markdownText}</article>
+		</div>
+	</section>
+</section>
+
+<style>
+	.wrapper {
+		display: flex;
+		gap: 1rem;
+		height: 100%;
+	}
+	label {
+		height: 100%;
+	}
+	textarea {
+		margin-top: 0.5rem;
+		width: 100%;
+		height: 100%;
+		min-height: 250px;
+	}
+	.article-wrapper {
+		flex: 1 0 auto;
+		height: 100%;
+	}
+	.article {
+		border: 1px solid black;
+		height: 100%;
+		min-height: 250px;
+	}
+	h5 {
+		font-weight: 400;
+		font-size: 1rem;
+		margin-bottom: 0.5rem;
+	}
+</style>
