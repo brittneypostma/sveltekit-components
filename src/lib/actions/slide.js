@@ -27,7 +27,7 @@ export function slide(node, { isOpen, duration = 500 }) {
 			animation.reverse()
 			animation.pause()
 		}
-		node.dispatchEven(new CustomEvent('animationEnd'))
+		node.dispatchEvent(new CustomEvent('animationEnd'))
 	}
 
 	return {

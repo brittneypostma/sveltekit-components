@@ -3,10 +3,27 @@
 	import Field from '@components/Field.svelte'
 	import SearchFilter from '@components/SearchFilter.svelte'
 	import Markdown from '@components/Markdown.svelte'
+	import Modal from '@components/Modal.svelte'
+	import Toast from '@components/Toast.svelte'
 	import Toggle from '@components/Toggle.svelte'
-	let isToggled = false
+
+	import { toast } from '@stores/toast'
+
 	export let search = ''
+
+	let isToggled = false
+	let isModalOpen = false
+	let navOpen = false
+
 	let items = ['Brittney', 'Joe', 'Annabelle', 'Alex', 'Amelia']
+
+	function toggleNav() {
+		navOpen = !navOpen
+	}
+
+	function toggleModal() {
+		modalOpen = !modalOpen
+	}
 </script>
 
 <h1>SvelteKit UI</h1>
@@ -17,6 +34,11 @@
 	{/if}
 </h2>
 
+<Modal bind:isModalOpen>
+	<Field value={0} label="Number" type="number" placeholder="1" />
+	<Field label="Name" type="text" placeholder="Brittney" value="" instructions="" />
+</Modal>
+<button on:click={() => (isModalOpen = true)}>Open Modal</button>
 <article>
 	<h3>Markdown Editor</h3>
 	<Markdown />
@@ -33,7 +55,7 @@
 		</BetterAccordion>
 	</section>
 </article>
-<article>
+<article class="toggles">
 	<h3>Toggles</h3>
 	<Toggle bind:isToggled label="toggle" --buttonColor="gold" --toggleBgColor="navy" />
 	<Toggle bind:isToggled label="User" --buttonColor="navy" --toggleBgColor="cyan" />
@@ -47,10 +69,18 @@
 	<Field bind:value={search} label="Name" instructions="Type your name" placeholder="name" />
 	<SearchFilter {items} bind:search />
 </article>
+<article>
+	<button on:click={() => toast.send('New message!' + Math.random())}> New Toast </button>
+	<Toast duration={3000} />
+</article>
 
 <style>
 	article,
 	article > * + * {
 		margin-bottom: 1rem;
+	}
+	.toggles {
+		display: grid;
+		gap: 1rem;
 	}
 </style>
