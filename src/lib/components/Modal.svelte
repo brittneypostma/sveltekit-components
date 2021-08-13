@@ -20,7 +20,6 @@
 			class="modal-wrapper"
 			transition:fly={{ opacity: 0, y: 100 }}
 		>
-			<button on:click={() => (isModalOpen = false)} aria-label="Close Modal">X</button>
 			<div class="slot-wrapper">
 				<slot />
 			</div>
@@ -30,11 +29,6 @@
 {/if}
 
 <style>
-	button {
-		position: relative;
-		inset: -40px 0;
-		z-index: 100;
-	}
 	.modal-wrapper {
 		position: fixed;
 		inset: 25vh 0 0;
