@@ -28,17 +28,16 @@
 
 <h1>SvelteKit UI</h1>
 <h2>
-	Welcome
-	{#if search !== ''}
+	Welcome{#if search !== ''}
 		, {search}
 	{/if}
 </h2>
 
-<Modal bind:isModalOpen>
-	<Field value={0} label="Number" type="number" placeholder="1" />
-	<Field label="Name" type="text" placeholder="Brittney" value="" instructions="" />
-</Modal>
-<button on:click={() => (isModalOpen = true)}>Open Modal</button>
+<article>
+	<h3>Name Inputs</h3>
+	<Field bind:value={search} label="Name" instructions="Type your name" placeholder="name" />
+	<SearchFilter {items} bind:search />
+</article>
 <article>
 	<h3>Markdown Editor</h3>
 	<Markdown />
@@ -63,15 +62,14 @@
 		<h4>Toggled</h4>
 	{/if}
 </article>
-
-<article>
-	<h3>Name Inputs</h3>
-	<Field bind:value={search} label="Name" instructions="Type your name" placeholder="name" />
-	<SearchFilter {items} bind:search />
-</article>
 <article>
 	<button on:click={() => toast.send('New message!' + Math.random())}> New Toast </button>
 	<Toast duration={3000} />
+	<button on:click={() => (isModalOpen = true)}>Open Modal</button>
+	<Modal bind:isModalOpen>
+		<Field value={0} label="Number" type="number" placeholder="1" />
+		<Field label="Name" type="text" placeholder="Brittney" value="" instructions="" />
+	</Modal>
 </article>
 
 <style>

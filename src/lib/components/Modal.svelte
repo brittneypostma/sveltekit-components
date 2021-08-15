@@ -14,17 +14,18 @@
 
 {#if isModalOpen}
 	<Portal>
-		<div
-			use:clickOutside
-			on:click-outside={closeModal}
-			class="modal-wrapper"
-			transition:fly={{ opacity: 0, y: 100 }}
-		>
-			<div class="slot-wrapper">
-				<slot />
+		<div class="bg" on:click={closeModal} transition:fade>
+			<div
+				use:clickOutside
+				on:click-outside={closeModal}
+				class="modal-wrapper"
+				transition:fly={{ opacity: 0, y: 100 }}
+			>
+				<div class="slot-wrapper">
+					<slot />
+				</div>
 			</div>
 		</div>
-		<div class="bg" on:click={closeModal} transition:fade />
 	</Portal>
 {/if}
 
@@ -57,5 +58,6 @@
 		cursor: point;
 		inset: 0;
 		z-index: 99;
+		height: 100%;
 	}
 </style>

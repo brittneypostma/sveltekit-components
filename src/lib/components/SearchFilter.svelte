@@ -43,6 +43,9 @@
 		display: inline-block;
 		position: relative;
 	}
+	input {
+		margin-top: 0.25rem;
+	}
 	ul {
 		position: absolute;
 		width: 100%;
@@ -54,6 +57,7 @@
 		box-shadow: 0 4px 8px rgb(0, 0, 0, 0.2);
 	}
 	li {
+		background-color: #fff;
 		text-transform: capitalize;
 		padding: 10px;
 		transition: 0.2s background ease-in-out;

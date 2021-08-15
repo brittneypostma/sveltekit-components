@@ -45,6 +45,7 @@
 		min-height: 250px;
 	}
 	h5 {
+		margin: 0;
 		font-weight: 400;
 		font-size: 1rem;
 		margin-bottom: 0.5rem;

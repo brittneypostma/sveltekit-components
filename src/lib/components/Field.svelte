@@ -25,4 +25,8 @@
 		opacity: 0.7;
 		font-size: var(--instructionFontSize, 1rem);
 	}
+	label,
+	label > * {
+		margin-bottom: 0.25rem;
+	}
 </style>
