@@ -6,7 +6,7 @@
 
 <nav>
 	<a class:active={$page.path === '/'} href="/">Home</a>
-	<a class:active={$page.path === '/quiz'} href="/quiz">Quiz</a>
+	<a class:active={$page.path === '/svelte'} href="/svelte">Svelte</a>
 </nav>
 
 <main>
