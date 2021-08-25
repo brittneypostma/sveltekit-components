@@ -2,7 +2,7 @@
   let amount = 10
   let category
   let difficulty
-  let type
+  let quiz = getQuiz()
   const categories = [    
     {id: 9, category: 'General Knowledge'},
     {id: 10, category: 'Entertainment: Books'},
@@ -29,10 +29,18 @@
     {id: 21, category: 'Sports'},
     {id: 28, category: 'Vehicles'}
   ]
+  const difficulties = [
+    "easy", "medium", "hard"
+  ]
 	import AddNumbers from '@components/AddNumbers.svelte'
 	import Quiz from '@components/Quiz.svelte'
 	const title = 'Svelte for Beginners'
-  $: console.log(category)
+  
+  async function getQuiz() {
+    const res = await fetch(`https://opentdb.com/api.php?amount=${amount}&type=multiple&difficulty=${difficulty}&category=${category}`)
+    const quiz = await res.json()
+    return quiz
+  }
 </script>
 
 <svelte:head>
@@ -45,14 +53,26 @@
 <h2>Quiz</h2>
 <!-- <Quiz /> -->
 <label for="amount">Number of Questions</label>
-  <input id="amount" type="number" bind:value={amount} min="10" max="50">
-  <label for="category">Category</label>
-    <select id="category" bind:value={category} on:change="{() => category = ''}">
-    {#each categories as aCategory}
-      <option on:click="{() => category = aCategory.id}" value={aCategory.id}>{aCategory.category}</option>
-    {/each}
-    </select>
-  <label for="difficulty">Difficulty</label>
-    <input type="text">
-    <label for="type">Type</label>
-      <input type="text">
+<input id="amount" type="number" bind:value={amount} min="10" max="50">
+<label for="category">Category</label>
+<select id="category" bind:value={category} on:change="{() => category = ''}">
+  {#each categories as aCategory}
+    <option 
+      on:click="{() => category = aCategory.id}" 
+      value={aCategory.id}>
+      {aCategory.category}
+    </option>
+  {/each}
+</select>
+<label for="difficulty">Difficulty</label>
+<select id="difficulty" bind:value={difficulty} on:change="{() => difficulty = ''}">
+  {#each difficulties as aDifficulty}
+    <option 
+      on:click="{() => difficulty = aDifficulty}" 
+      value={aDifficulty}>
+      {aDifficulty}
+    </option>
+  {/each}
+</select>
+<button on:click="{getQuiz}">Generate Quiz</button>
+
