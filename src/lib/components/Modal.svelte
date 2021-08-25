@@ -5,7 +5,7 @@
 	import { clickOutside } from '@actions/clickOutside'
 
 	export let isModalOpen = false
-	export let background = true
+	// export let background = true
 
 	function closeModal() {
 		isModalOpen = false
@@ -14,7 +14,7 @@
 
 {#if isModalOpen}
 	<Portal>
-		<div class="bg" on:click={closeModal} transition:fade>
+		<div class="bg" transition:fade>
 			<div
 				use:clickOutside
 				on:click-outside={closeModal}
@@ -42,6 +42,7 @@
 		z-index: 100;
 		background: rgb(255, 255, 255);
 		padding: 1rem;
+    cursor: initial;
 	}
 
 	.slot-wrapper {
@@ -53,11 +54,11 @@
 	}
 
 	.bg {
-		position: absolute;
+		position: fixed;
 		background: rgb(0, 0, 0, 0.7);
-		cursor: point;
+		cursor: pointer;
 		inset: 0;
-		z-index: 99;
+		z-index: 98;
 		height: 100%;
 	}
 </style>

@@ -47,7 +47,7 @@
 <label for="amount">Number of Questions</label>
   <input id="amount" type="number" bind:value={amount} min="10" max="50">
   <label for="category">Category</label>
-  <select id="category" bind:value={category} on:change="{() => category = ''}">
+    <select id="category" bind:value={category} on:change="{() => category = ''}">
     {#each categories as aCategory}
       <option on:click="{() => category = aCategory.id}" value={aCategory.id}>{aCategory.category}</option>
     {/each}
