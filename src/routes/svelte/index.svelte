@@ -35,7 +35,7 @@
 	import Quiz from '@components/Quiz.svelte'
 	const title = 'Svelte for Beginners'
 
-  async function getQuiz() {
+  async function getQuiz(amount, category, difficulty) {
     const res = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`)
     const quiz = await res.json()
     if (res.ok) return quiz
@@ -56,7 +56,7 @@
 <label for="amount">Number of Questions
 <input id="amount" type="number" bind:value={amount} min="10" max="50"></label>
 <label for="category">Category
-<select id="category" bind:value={category} on:change="{() => category = ''}">
+<select id="category" bind:value={category}>
   {#each categories as aCategory}
     <option 
       on:click="{() => category = aCategory.id}" 
@@ -66,7 +66,7 @@
   {/each}
 </select></label>
 <label for="difficulty">Difficulty
-<select id="difficulty" bind:value={difficulty} on:change="{() => difficulty = ''}">
+<select id="difficulty" bind:value={difficulty}>
   {#each difficulties as aDifficulty}
     <option 
       on:click="{() => difficulty = aDifficulty}" 
@@ -75,16 +75,14 @@
     </option>
   {/each}
 </select></label>
-<button on:click={getQuiz}>Generate Quiz</button>
 </form>
-{#await getQuiz()}
+{#await getQuiz(amount, category, difficulty)}
 <h3>loading quiz</h3>
 {:then data}
 <article>
   <h3>Quiz</h3>
   <ol>
     {#each data.results as data}
-    {console.log(JSON.stringify(data))}
       <li>{@html JSON.stringify(data.question)}</li>
     {/each}
   </ol>
