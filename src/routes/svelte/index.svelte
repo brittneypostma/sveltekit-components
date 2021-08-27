@@ -1,8 +1,7 @@
 <script>
   let amount = 10
-  let category
-  let difficulty
-  let quiz = getQuiz()
+  let category = 9
+  let difficulty = 'easy'
   const categories = [    
     {id: 9, category: 'General Knowledge'},
     {id: 10, category: 'Entertainment: Books'},
@@ -35,11 +34,12 @@
 	import AddNumbers from '@components/AddNumbers.svelte'
 	import Quiz from '@components/Quiz.svelte'
 	const title = 'Svelte for Beginners'
-  
+
   async function getQuiz() {
-    const res = await fetch(`https://opentdb.com/api.php?amount=${amount}&type=multiple&difficulty=${difficulty}&category=${category}`)
+    const res = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`)
     const quiz = await res.json()
-    return quiz
+    if (res.ok) return quiz
+    else console.error(`${quiz} ERROR: ${res.error}`)
   }
 </script>
 
@@ -50,11 +50,12 @@
 <h1>{title}</h1>
 
 <AddNumbers title="Svelte Quiz" />
-<h2>Quiz</h2>
+<h2>Create a Quiz</h2>
 <!-- <Quiz /> -->
-<label for="amount">Number of Questions</label>
-<input id="amount" type="number" bind:value={amount} min="10" max="50">
-<label for="category">Category</label>
+<form>
+<label for="amount">Number of Questions
+<input id="amount" type="number" bind:value={amount} min="10" max="50"></label>
+<label for="category">Category
 <select id="category" bind:value={category} on:change="{() => category = ''}">
   {#each categories as aCategory}
     <option 
@@ -63,8 +64,8 @@
       {aCategory.category}
     </option>
   {/each}
-</select>
-<label for="difficulty">Difficulty</label>
+</select></label>
+<label for="difficulty">Difficulty
 <select id="difficulty" bind:value={difficulty} on:change="{() => difficulty = ''}">
   {#each difficulties as aDifficulty}
     <option 
@@ -73,6 +74,35 @@
       {aDifficulty}
     </option>
   {/each}
-</select>
-<button on:click="{getQuiz}">Generate Quiz</button>
-
+</select></label>
+<button on:click={getQuiz}>Generate Quiz</button>
+</form>
+{#await getQuiz()}
+<h3>loading quiz</h3>
+{:then data}
+<article>
+  <h3>Quiz</h3>
+  <ol>
+    {#each data.results as data}
+    {console.log(JSON.stringify(data))}
+      <li>{@html JSON.stringify(data.question)}</li>
+    {/each}
+  </ol>
+</article>
+{/await}
+<style>
+form {
+  display: grid;
+  gap: 1rem;
+  justify-items: flex-start;
+}
+form > * {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+ol {
+  display: grid;
+  gap: 1rem;
+}
+</style>

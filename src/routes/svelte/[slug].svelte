@@ -1,12 +1,13 @@
 <script context="module">
-  let amount
-  let category = `&category=${category}`
-  let difficulty = `&difficulty=${difficulty}`
+  let amount = 10
+  let category
+  let difficulty
   export async function load() {
-    const trivia = await fetch(`https://opentdb.com/api.php?amount=${amount}&type=multiple`)
+    const res = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`)
+    const quiz = await res.json()
     return {
       props: {
-
+        quiz
       }
     }
   }
