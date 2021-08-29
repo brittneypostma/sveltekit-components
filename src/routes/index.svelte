@@ -11,6 +11,8 @@
 
 	export let search = ''
 
+  let title = `SvelteKit UI`
+
 	let isToggled = false
 	let isModalOpen = false
 	let navOpen = false
@@ -26,7 +28,11 @@
 	}
 </script>
 
-<h1>SvelteKit UI</h1>
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
+
+<h1>{title}</h1>
 <h2>
 	Welcome{#if search !== ''}
 		, {search}
