@@ -33,17 +33,9 @@
 {/if}
 
 <style>
-  button {
-    background: white;
-    color: teal;
-    font-weight: 700;
-    border: 2px solid teal;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-  }
   div {
     margin-top: 1rem;
-    background: teal;
+    background: var(--accent);
     width: 100px;
     height: 100px;
   }

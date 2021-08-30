@@ -10,7 +10,7 @@
 <section class="wrapper">
 	<label>
 		Markdown Editor
-		<textarea id="" bind:value={text} />
+		<textarea bind:value={text} />
 	</label>
 	<section class="article-wrapper">
 		<h5>Markdown Display</h5>
@@ -27,10 +27,12 @@
 		height: 100%;
 	}
 	label {
+    line-height: 1.15;
 		height: 100%;
+		font-size: 1rem;
 	}
 	textarea {
-		margin-top: 0.5rem;
+    margin-top: 0.5rem;
 		width: 100%;
 		height: 100%;
 		min-height: 250px;
@@ -49,5 +51,6 @@
 		font-weight: 400;
 		font-size: 1rem;
 		margin-bottom: 0.5rem;
+    font-family: var(--bodyFont);
 	}
 </style>

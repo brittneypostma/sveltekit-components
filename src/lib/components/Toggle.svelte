@@ -24,10 +24,11 @@
 		width: var(--width);
 		height: var(--height);
 		border-radius: var(--radius);
-		border: solid 1px navy;
+		border: solid 1px var(--accent);
 		transition: transorm 0.3s ease-in-out;
 	}
 	.toggle::after {
+    cursor: pointer;
 		content: '';
 		position: absolute;
 		top: -1px;
@@ -35,7 +36,7 @@
 		height: var(--height);
 		width: var(--height);
 		border-radius: var(--radius);
-		background-color: var(--buttonColor, gold);
+		background-color: var(--buttonColor, var(--pink));
 		box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3);
 		transition: transorm 0.3s ease-in-out;
 	}
