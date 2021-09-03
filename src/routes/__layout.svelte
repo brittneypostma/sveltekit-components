@@ -1,11 +1,11 @@
 <script>
 	import '@styles/reset.css'
 	import '@styles/app.css'
-  import Nav from '@components/layout/Nav.svelte'
+	import Nav from '@layout/Nav.svelte'
 </script>
 
 <header>
-  <Nav />
+	<Nav />
 </header>
 <main class="wrapper">
 	<slot />
@@ -17,9 +17,9 @@
 		height: 100%;
 	}
 
-  @media (min-width: 600px) {
-    main {
-      padding: 0 0 1rem;
-    }
-  }
+	@media (min-width: 600px) {
+		main {
+			padding: 0 0 1rem;
+		}
+	}
 </style>

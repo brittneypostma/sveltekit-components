@@ -1,6 +1,7 @@
 <script>
-  let title = `Animations`
-  import Box from '@components/animations/Box.svelte'
+	let title = `Animations`
+	import Box from '@components/animations/Box.svelte'
+	import Transition from '@components/animations/Transition.svelte'
 </script>
 
 <svelte:head>
@@ -9,4 +10,15 @@
 
 <h1>{title}</h1>
 
-<Box />
+<section>
+	<Box />
+	<Transition />
+</section>
+
+<style>
+	section {
+		display: grid;
+		gap: 1rem;
+		justify-items: flex-start;
+	}
+</style>
