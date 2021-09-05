@@ -14,7 +14,6 @@
 </script>
 
 <Button bind:isReady type="Transitions" />
-<h2 class:hidden={!isReady}>Transitions</h2>
 <section>
 	{#if isReady}
 		<div transition:fade>
@@ -55,10 +54,5 @@
 		flex-wrap: wrap;
 		gap: 1.5rem;
 		text-align: center;
-	}
-
-	.hidden {
-		opacity: 0;
-		transition: 0.3s ease-in-out opacity;
 	}
 </style>
